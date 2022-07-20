@@ -1,4 +1,5 @@
 from helper.URLConverter import string_to_url
+from helper.CSVGenerator import generate_csv
 from bs4 import BeautifulSoup
 import requests
 
@@ -8,6 +9,7 @@ def scrap_indeed_website(position, location):
     content = requests.get(url).text
     soup = BeautifulSoup(content, 'lxml')
     jobs = soup.findAll('div', class_='job_seen_beacon')
+    csv_data = 'Company_Name,Company_Location,Job_Title,Job_Detail,Job_Salary,Job_Type\n'
 
     if len(jobs) != 0:
         for job in jobs:
@@ -34,6 +36,8 @@ def scrap_indeed_website(position, location):
             except:
                 job_type = 'No job type data found'
 
+            csv_data += f'{company_name},{company_location},{job_title},{job_link},{job_salary},{job_type}\n'
+
             print(f'Company Name: {company_name}')
             print(f'Company Location: {company_location}')
             print(f'Job Title: {job_title}')
@@ -41,5 +45,16 @@ def scrap_indeed_website(position, location):
             print(f'Job Salary: {job_salary}')
             print(f'Job Type: {job_type}')
             print()
+
+        save_to_csv = ''
+        while save_to_csv != 'Y' and save_to_csv != 'n':
+            save_to_csv = input('Want to save data to CSV file?[Y/n]: ')
+            if save_to_csv == 'Y':
+                generate_csv(csv_data)
+                print('Thank You!')
+            elif save_to_csv == 'n':
+                print('Thank You!')
+            else:
+                print('Input invalid')
     else:
         print('Please make sure the position and location keyword is correct.')
