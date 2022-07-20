@@ -48,7 +48,7 @@ def scrap_indeed_website(position, location):
 
         save_to_csv = ''
         while save_to_csv != 'Y' and save_to_csv != 'n':
-            save_to_csv = input('Want to save data to CSV file?[Y/n]: ')
+            save_to_csv = input('Want to save data to CSV file? [Y/n]: ')
             if save_to_csv == 'Y':
                 generate_csv(csv_data)
                 print('Thank You!')
