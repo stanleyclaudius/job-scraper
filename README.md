@@ -9,7 +9,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/stanleyclaudius/job-scraper">
-    <img src="img/logo.png" alt="Logo" width="80" height="80">
+    <img src="img/logo.png" alt="Logo" width="90" height="80">
   </a>
 
   <h3 align="center">Job Scraper</h3>
